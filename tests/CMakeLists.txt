@@ -6,8 +6,7 @@ add_executable(${UNIT_TEST_NAME}
 )
 
 
-target_link_libraries(${UNIT_TEST_NAME} PRIVATE ${PROJECT_NAME} m  ${FFTW3_LIBRARIES})
-target_include_directories(${UNIT_TEST_NAME} PUBLIC ${FFTW3_INCLUDE_DIRS})
+target_link_libraries(${UNIT_TEST_NAME} PRIVATE ${PROJECT_NAME} m  PkgConfig::FFTW3F)
 target_compile_options(${UNIT_TEST_NAME} PRIVATE
     -Wextra -Wall -Wpedantic -Werror
 )

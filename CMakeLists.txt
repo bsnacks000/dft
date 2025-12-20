@@ -24,9 +24,8 @@ endif()
 
 find_package(PkgConfig REQUIRED)
 
-pkg_check_modules(FFTW3 REQUIRED fftw3f)
-message(STATUS " ** fftw3 libraries: ${FFTW3_LIBRARIES}")
-message(STATUS " ** fftw3 include dirs: ${FFTW3_INCLUDE_DIRS}")
+#pkg_check_modules(FFTW3 REQUIRED fftw3f)
+pkg_check_modules(FFTW3F REQUIRED IMPORTED_TARGET fftw3f)
 
 
 # always build the main static library
@@ -37,9 +36,8 @@ file(GLOB SRC_FILES ./*.c)
 add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_SOURCE_DIR}"
-    "${FFTW3_INCLUDE_DIRS}"
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE ${FFTW3_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE PkgConfig::FFTW3F)
 
 target_compile_options(${PROJECT_NAME} PRIVATE -Wextra -Wall -Wpedantic -Werror
         -Wmissing-declarations -Wmissing-prototypes
