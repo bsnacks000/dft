@@ -46,6 +46,16 @@ jobs:
           echo "CC=${{ matrix.c_compiler }}" >> $GITHUB_ENV
           echo "CXX=${{ matrix.cpp_compiler }}" >> $GITHUB_ENV
 
+      - name: Install FFTW3
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            sudo apt-get update
+            sudo apt-get install -y libfftw3-dev
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            brew update
+            brew install fftw
+          fi
+
       - name: Build and Run Tests.
         run: |
           make build TESTS=1 BUILD_TYPE=${{ matrix.build_type }}
@@ -77,6 +87,16 @@ jobs:
         run: |
           echo "CC=${{ matrix.c_compiler }}" >> $GITHUB_ENV
           echo "CXX=${{ matrix.cpp_compiler }}" >> $GITHUB_ENV
+
+      - name: Install FFTW3
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            sudo apt-get update
+            sudo apt-get install -y libfftw3-dev
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            brew update
+            brew install fftw
+          fi
 
       - name: Build and Run coverage
         run: |
