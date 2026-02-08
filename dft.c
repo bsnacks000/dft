@@ -61,7 +61,7 @@ rdft* rdft_create(uint32_t n) {
 
 void rdft_execute(rdft* self, dft_complex* out, float* in) {
 
-    memset(self->r_in, 0, sizeof(double));
+    memset(self->r_in, 0, sizeof(float) * self->r_in_sz);
 
     for (uint32_t i = 0; i < self->r_in_sz; i++)
         self->r_in[i] = in[i];

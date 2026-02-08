@@ -6,23 +6,15 @@
 # w/ csound plugins: make build CSOUND=1
 BUILD_TYPE?=Release
 TESTS?=0
-CSOUND?=0
-UTILS?=0
 COVERAGE?=0
 
 CMAKE_OPTS = -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)
 
-ifeq ($(CSOUND), 1)
-	CMAKE_OPTS += -DBUILD_CSOUND=ON
-endif
 
 ifeq ($(TESTS), 1)
 	CMAKE_OPTS += -DBUILD_TESTS=ON
 endif
 
-ifeq ($(UTILS), 1)
-	CMAKE_OPTS += -DBUILD_UTILS=ON
-endif
 
 ifeq ($(COVERAGE), 1)
 	CMAKE_OPTS += -DCOVERAGE=ON
